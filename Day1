@@ -1,0 +1,39 @@
+-- create table
+create table users 
+	
+	(
+		user_id number(5) constraint U_ID_PK primary key,
+		user_name varchar2(25),
+		user_location varchar2(25),
+		user_email_id varchar2(25),
+		user_contact_no number(10)
+	);
+
+	-- Unique key accepts null . if value not given shall be taken as null
+
+-- insert
+
+
+	-- DEPARTMENT_ID number (5) constraint TEST_DEPTID_PK primary key
+
+insert into users 
+	(
+		user_id, user_name, user_location, user_email_id, user_contact_no
+	)
+    values (00001, 'Nikhil', 'Bihar', 'killerBarfi@gmail.com', 7777777890); -- defined insertion
+
+    insert into values(00002, 'Jai', 'Kanpur', 'codeme.jai@gmail.com', 7757822974); -- raw insertion
+
+    insert into users (user_id, user_name) values (00003, 'Rhythm');-- error
+
+    -- SELECT COLUMN_NAME, CONSTRAINT FROM USER_CONNS_COLUMNS WHERE TABLE_NAME = 'EMPLOYEES'  select * from user_indexes where table_name='FIRST_PAY_DEPT'  
+
+    select * from users where table_name = 'users'
+
+    /* SELECT *
+  FROM user_cons_columns
+ WHERE table_name = '<your table name>'; */
+
+ 	select * 
+ 	from user_cons_columns
+ 	where table_name = 'users';
