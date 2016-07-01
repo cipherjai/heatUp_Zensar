@@ -1,0 +1,29 @@
+
+
+
+create or replace procedure ckr_locations_pr( id varchar2)
+is
+type rsr_loc is ref cursor;
+rec_loc rsr_loc;
+l_street_address  locations.street_address%type;
+l_state_province locations.state_province%type;
+l_region_id regions.region_id%type;
+l_region_name  regions. region_name%type;
+l_para varchar2(80);
+begin
+l_para:='select  street_address,state_province from locations where location_id='''||id||'''';
+open rec_loc for l_para;
+loop
+fetch rec_loc into l_street_address, l_state_province;
+exit when rec_loc%notfound;
+dbms_output.put_line(l_street_address||'    '||l_state_province);
+end loop;
+l_para:='select region_id, region_name from regions where region_id = '''||id||'''';
+open rec_loc for l_para;
+loop
+fetch rec_loc into l_region_id,l_region_name;
+exit when rec_loc%notfound;
+dbms_output.put_line(l_region_id||'        '||l_region_name);
+end loop;
+close rec_loc;
+end;

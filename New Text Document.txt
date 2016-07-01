@@ -1,0 +1,8 @@
+Nomination status:
+1-self enrolled,
+2-approved by manager,
+3-waiting,
+4-self cancellation,
+5-confirmed by admin,
+6-rejected by manger,
+7-trainer spot-entry

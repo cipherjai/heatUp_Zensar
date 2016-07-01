@@ -1,0 +1,101 @@
+set serveroutput on
+ declare
+ l_employee_id number(6);
+ l_last_name varchar(20);
+ l_first_name employees.first_name%type;
+ l_email employees.email%type;
+ l_phone_number employees.phone_number%type;
+ l_hire_date employees.hire_date%type;
+ l_job_id employees.job_id%type;
+ l_job_title jobs.job_title%type;
+ l_min_salary jobs.min_salary%type;
+ l_max_salary jobs.max_salary%type;
+ l_manager_id departments.manager_id%type;
+ l_department_id departments.department_id%type;
+ l_department_name departments.department_name%type;
+ l_location_id locations.location_id%type;
+ l_street_address locations.street_address%type;
+ l_postal_code locations.postal_code%type;
+ l_city locations.city%type;
+ l_state_province locations.state_province%type;
+ l_country_id countries.country_id%type;
+ l_country_name countries.country_name%type;
+ l_region_id regions.region_id %type;
+ l_region_name regions.region_name%type;
+  begin
+ select e.employee_id,
+ e.last_name,
+ e.first_name,
+e.email,
+ e.phone_number,
+ e.hire_date,
+ e.job_id,
+ j.job_title,
+ j.min_salary,
+ j.max_salary,
+ d.manager_id,
+ d.department_id,
+ d.department_name,
+ l.location_id,
+ l.street_address,
+ l.postal_code,
+ l.city,
+ l.state_province,
+ c.country_id,
+ c.country_name,
+ r.region_id,
+r.region_name
+  into l_employee_id ,
+  l_last_name,
+  l_first_name,
+  l_email,
+  l_phone_number,
+  l_hire_date,
+ l_job_id,
+ l_job_title,
+ l_min_salary,
+ l_max_salary,
+ l_manager_id,
+ l_department_id,
+ l_department_name,
+ l_location_id,
+ l_street_address,
+ l_postal_code,
+ l_city,
+ l_state_province,
+ l_country_id,
+ l_country_name,
+ l_region_id,
+ l_region_name 
+ from employees e , departments d, locations l,jobs j,countries c,regions r
+ where e.department_id =d.department_id
+and d.location_id=l.location_id
+and e.job_id=j.job_id
+and l.country_id= c.country_id
+and c.region_id=r.region_id
+ and e.employee_id=100;
+ dbms_output.put_line(l_employee_id
+ ||' '||l_last_name
+ ||' '||l_first_name
+ ||' '||l_email
+ ||' '||l_phone_number
+ ||' '||l_hire_date
+ ||' '||l_job_id
+ ||' '||l_job_title
+ ||' '||l_min_salary
+ ||' '||l_max_salary
+ ||' '||l_manager_id
+ ||' '||l_department_id
+ ||' '||l_department_name
+ ||' '||l_location_id
+ ||' '||l_street_address
+ ||' '||l_postal_code
+ ||' '||l_city
+ ||' '||l_state_province
+ ||' '||l_country_id
+ ||' '||l_country_name
+ ||' '||l_region_id
+ ||' '||l_region_name);
+ end;
+ /
+ show error

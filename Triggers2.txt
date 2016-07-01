@@ -1,0 +1,14 @@
+
+
+
+
+create or replace trigger sal_chk
+before update of sal on emp_temp
+for each row
+begin
+if :new.sal< :old.sal then
+raise_application_error(-2009,'no such possibility');
+end if;
+end;
+
+

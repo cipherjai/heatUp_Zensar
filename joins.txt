@@ -1,0 +1,41 @@
+
+
+
+
+
+SELECT e.employee_id, e.last_name, e.department_id,
+       d.department_id, d.location_id
+FROM   employees e , departments d
+WHERE  e.department_id = d.department_id;
+
+
+SELECT employees.employee_id, employees.last_name, 
+       departments.location_id, department_id
+FROM   employees JOIN departments
+USING (department_id) ;
+
+
+
+SELECT e.last_name emp, m.last_name mgr
+FROM   employees e JOIN employees m
+ON    (e.manager_id = m.employee_id);
+
+
+SELECT e.last_name, e.department_id, d.department_name
+FROM   employees e LEFT OUTER JOIN departments d
+ON   (e.department_id = d.department_id) ;
+
+SELECT e.last_name, e.department_id, d.department_name
+FROM   employees e RIGHT OUTER JOIN departments d
+ON    (e.department_id = d.department_id) ;
+
+SELECT e.last_name, d.department_id, d.department_name
+FROM   employees e FULL OUTER JOIN departments d
+ON   (e.department_id = d.department_id) ;
+
+
+
+SELECT worker.last_name || ' works for ' 
+       || manager.last_name
+FROM   employees worker, employees manager
+WHERE  worker.manager_id = manager.employee_id

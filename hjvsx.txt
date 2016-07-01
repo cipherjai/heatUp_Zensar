@@ -1,0 +1,35 @@
+set serveroutput on
+declare
+l_employee_id employees.employee_id%type;
+l_last_name employees.last_name%type;
+l_first_name employees.first_name%type;
+l_email employees.email%type;
+l_phone_number employees.phone_number%type;
+l_hire_date employees.hire_date%type;
+l_job_id employees.job_id%type;
+l_manager_id employees.manager_id%type;
+l_department_id emloyees.department_id%type;
+l_job_title jobs.job_title%type;
+/*l_location_id jobs.location_id%type;
+l_min_salary jobs.min_salary%type;
+l_max_salary jobs.max_salary%type;
+l_job_title jobs.job_title%type;
+l_country_name countries.country_name%type;
+l_region_name region_region_name%type;
+l_salary employees.salary%type;
+l_commision_pct employees.commission_pct%type;
+l_department_name  departments.department_name%type;
+l_state_province locations.state_province%type;
+l_city locations.city%type;
+l_postal_code locations.postal_code%type;
+l_street_address locations.streer_address%type;*/
+begin
+select e.employee_id, e.first_name,e.last_name,e.email,e.phone_number,e.hire_date,e.job_id,e.manager_id,e.department_id,d.department_id,j.job_title,
+l.location_id,j.min_salary,j.max_salary,j.job_title,p.country_name,p.region_id,p.country_id,r.region_name,e.salary,e.commission_pct,d.department_name,
+l.state_province,l.city,l.postal_code,l.street_address
+into
+l_employee_id,l_last_name,l_first_name,l_email,l_phone_number,l_hire_date,l_job_id,l_manager_id,l_department_id,l_job_title,
+from employees e,jobs j,countries p,regions r,locations l,departments d
+where e.department_id=d.department_id and e.job_id=j.job_id and R.region_id = P.region_id and l.country_id=p.country_id and d.location_id=l.location_id AND employee_id = 100;
+dbms_output.put_line(l_employee_id||' '||l_last_name||' '||l_first_name||' '||l_email||' '||l_phone_number||' '||l_hire_date||' '||l_job_id||' '||l_manager_id||' '||l_department_id||' '||l_job_title);
+End;

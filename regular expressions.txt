@@ -1,0 +1,50 @@
+
+
+Use regular expressions to search for, match, and replace strings
+
+REGEXP_LIKE  Is similar to the LIKE operator, but performs regular expression 
+matching instead of simple pattern matching (condition)
+
+
+
+
+
+. Matches any character in the supported character set, except NULL
+
+
++ Matches one or more occurrences
+
+? Matches zero or one occurrence
+
+*  Matches zero or more occurrences of the preceding subexpression
+
+|  Matches one of the alternatives
+
+^  Matches the beginning of a string
+
+$  Matches the end of a string
+
+
+
+
+
+
+SELECT first_name, last_name
+FROM employees
+WHERE REGEXP_LIKE (first_name, '^Ste(v|ph)en$');
+
+
+
+
+
+
+select * from employees
+where regexp_like(to_char(hire_date,'RRRR'),'^198[2-7]$');
+
+
+
+
+
+
+
+
